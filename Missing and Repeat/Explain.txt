@@ -1,0 +1,37 @@
+This Java code is designed to find a missing number and a repeating element in a given array of integers. The array `arr` contains a sequence of integers, and the goal is to identify one element that is missing from the sequence and one element that is repeated.
+
+Let's break down the code step by step:
+
+1. Array Initialization:
+   
+   int[] arr = new int[] {7, 5, 2, 1, 4, 3, 2};
+   
+   Initializes an array named `arr` with a set of integers.
+
+2. Output Array Initialization:
+   
+   int[] out = new int[arr.length];
+   for(int i = 0; i < arr.length; i++){
+       out[i] = 0;
+   }
+  
+   Initializes an output array named `out` with the same length as the input array `arr`. This array will be used to keep track of the count of occurrences of each element.
+
+3. Counting Occurrences:
+   
+   for(int i : arr){
+       if(out[i - 1] == 0) out[i - 1] = 1;
+       else out[i - 1] += 1;
+   }
+   Iterates through the elements of the input array `arr`. For each element `i`, it increments the count in the `out` array at the index `(i - 1)`. If the count is 0, it means the element hasn't been encountered before, so it sets the count to 1. If the count is not 0, it increments the count.
+
+4. Identifying Missing and Repeating Elements:
+   
+   for(int i = 0; i < arr.length; i++){
+       if(out[i] == 2) System.out.println("Repeating element : " + (i+1));
+       if(out[i] == 0) System.out.println("Missing Number : " + (i + 1));
+   }
+   
+   Iterates through the `out` array. If the count is 2 at index `i`, it means that the corresponding element `(i+1)` in the input array is repeated, and it prints a message indicating the repeating element. If the count is 0, it means that the corresponding element `(i+1)` is missing, and it prints a message indicating the missing number.
+
+Note: The array indices are adjusted by 1 when accessing elements because the array is 0-indexed, while the elements in the sequence are assumed to be 1-indexed.
